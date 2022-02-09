@@ -1,7 +1,6 @@
 {
   "name": "api-music-now",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -22,5 +21,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tieskay/api-music-now.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tieskay/api-music-now/issues"
+  },
+  "homepage": "https://github.com/tieskay/api-music-now#readme",
+  "description": ""
 }
