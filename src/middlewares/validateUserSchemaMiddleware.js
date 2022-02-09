@@ -2,7 +2,7 @@ import db from "../db.js";
 import { stripHtml } from "string-strip-html";
 import userSchema from "../schemas/userSchema.js";
 
-export async function validateUserSchema(req, res, next) {
+export default async function validateUserSchemaMiddleware(req, res, next) {
   const user = req.body;
 
   const validation = userSchema.validate(user, { abortEarly: false });
