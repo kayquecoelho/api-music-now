@@ -167,7 +167,9 @@ export default function seed() {
       },
     ];
 
+    db.collection("products").deleteMany({});
     db.collection("products").insertMany(products);
+    db.collection("artists").deleteMany({});
     db.collection("artists").insertMany(artists);
     executed = true;
   }
