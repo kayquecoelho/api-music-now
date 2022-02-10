@@ -6,6 +6,6 @@ import validateUserSchemaMiddleware from "../middlewares/validateUserSchemaMiddl
 const authRouter = Router();
 
 authRouter.post('/sign-in', validateLoginSchemaMiddleware, signIn);
-authRouter.post("/sign-up", validateUserSchemaMiddleware, register);
+authRouter.post('/sign-up', validateUserSchemaMiddleware, register);
 
 export default authRouter;
