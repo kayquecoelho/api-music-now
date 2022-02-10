@@ -3,7 +3,7 @@ import cors from 'cors';
 import router from "./routes/index.js";
 import seed from './seed.js';
 
-/* seed(); */
+seed();
 const app = express();
 
 app.use(cors());
