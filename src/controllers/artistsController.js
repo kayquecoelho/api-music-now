@@ -14,12 +14,14 @@ export async function getArtists(req, res) {
 export async function getArtistProduct(req, res) {
   const { artist } = res.locals;
 
-  const products = await db
-    .collection("products")
-    .find({ artist: artist.name })
-    .toArray();
+  try {
+    const products = await db.collection("products").find({ artist: artist.name }).toArray();
 
-  const response = { name: artist.name, products };
+    const response = { name: artist.name, products };
 
-  res.send(response);
+    res.send(response);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
 }
