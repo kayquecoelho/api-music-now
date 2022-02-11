@@ -26,8 +26,13 @@ export async function getProduct(req, res) {
 }
 
 export async function products(req, res) {
+  const type = req.query.type;
   try {
-    const products = await db.collection("products").find({}).toArray();
+    if (!type) {
+      const products = await db.collection("products").find({}).toArray();
+      return res.send(products);
+    }
+    const products = await db.collection("products").find({type}).toArray();
     res.send(products);
   } catch (error) {
     console.log(error);

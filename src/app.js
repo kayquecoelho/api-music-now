@@ -11,6 +11,6 @@ app.use(json());
 
 app.use(router);
 
-app.listen(process.env.PORT, () => {
+app.listen(5000, () => {
   console.log(`Listening on door ${process.env.PORT}`)
 });
