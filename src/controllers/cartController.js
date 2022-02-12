@@ -97,7 +97,12 @@ export async function deleteProduct(req, res) {
 
     if (!searchedUserCart) return res.sendStatus(404);
     
+    const idExist = searchedUserCart.cart.find((p) => p._id === id)
     const productsFiltered = searchedUserCart.cart.filter((p) => p._id !== id);
+
+    if (!idExist) {
+      return res.sendStatus(404);
+    }
 
     await db.collection("cart").updateOne(
       { _id: searchedUserCart._id },
@@ -108,8 +113,7 @@ export async function deleteProduct(req, res) {
     );
 
     res.send("OK!");
-  } catch (error) {
-    console.log(error);
+  } catch {
     res.sendStatus(500);
   }
 }
