@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getCart, postCart } from "../controllers/cartController.js";
+import { changeQuantity, getCart, postCart } from "../controllers/cartController.js";
 import validateTokenMiddleware from "../middlewares/validateTokenMiddleware.js";
 import validateProductSchemaMiddleware from "../middlewares/validateProductSchemaMiddleware.js";
 
@@ -9,5 +9,6 @@ cartRouter.use(validateTokenMiddleware);
 
 cartRouter.get("/cart", getCart);
 cartRouter.post("/cart", validateProductSchemaMiddleware, postCart);
+cartRouter.put("/cart/:id", changeQuantity)
 
 export default cartRouter;
