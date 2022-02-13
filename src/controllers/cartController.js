@@ -34,12 +34,28 @@ export async function getCart(req, res) {
   const user = res.locals.user;
   
   try {
-    const searchedUser = await db.collection("cart").findOne({ userId: user._id });
+    const searchedUserCart = await db.collection("cart").findOne({ userId: user._id });
     if(!searchedUser){
-      res.sendStatus(404);
+      res.send([]);
     }
 
-    res.send(searchedUser.cart);
+    res.send(searchedUserCart);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+}
+
+export async function deleteCart(req, res) {
+  const user = res.locals.user;
+  
+  try {
+    const searchedUserCart = await db.collection("cart").deleteOne({ userId: user._id });
+    if(!searchedUserCart){
+      res.send(404);
+    }
+
+    res.sendStatus(200);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
