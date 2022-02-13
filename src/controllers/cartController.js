@@ -50,27 +50,11 @@ export async function getCart(req, res) {
   
   try {
     const searchedUserCart = await db.collection("cart").findOne({ userId: user._id });
-    if(!searchedUser){
-      res.send([]);
-    }
-
-    res.send(searchedUserCart);
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
-}
-
-export async function deleteCart(req, res) {
-  const user = res.locals.user;
-  
-  try {
-    const searchedUserCart = await db.collection("cart").deleteOne({ userId: user._id });
     if(!searchedUserCart){
-      res.send(404);
+      return res.send([]);
     }
 
-    res.sendStatus(200);
+    res.send(searchedUserCart.cart);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
