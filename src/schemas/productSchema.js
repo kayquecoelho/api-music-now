@@ -7,7 +7,8 @@ const productSchema = joi.object({
   amount: joi.number().required(), 
   quantity: joi.number().integer().required(),
   image: joi.string().required(), 
-  size: joi.string()
+  size: joi.string(),
+  _id: joi.string()
 });
 
 export default productSchema;

@@ -20,9 +20,9 @@ export default async function validateTokenMiddleware(req, res, next) {
       res.sendStatus(401);
       return;
     }
-  
+    
     res.locals.user = user;
-  
+    
     next();    
   } catch (error) {
     console.log(error);
