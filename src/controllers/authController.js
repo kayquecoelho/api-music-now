@@ -7,7 +7,7 @@ dotenv.config();
 export async function signIn(req, res) {
   const userData = req.body;
   const secretKey = process.env.JWT_SECRET;
-  const configuration = { expiresIn: 5 };
+  const configuration = { expiresIn: 60*60*24*30 };
 
   try {
     const user = await db.collection("users").findOne({ email: userData.email });
