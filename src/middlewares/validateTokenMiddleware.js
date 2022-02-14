@@ -21,7 +21,8 @@ export default async function validateTokenMiddleware(req, res, next) {
 
     try {
       const user = jwt.verify(session.token, secretKey);
-      res.locals.user = user;
+
+      res.locals.user = {...user, userId: session.userId};
       
       next();
     } catch (error) {
