@@ -1,8 +1,12 @@
 import db from "../db.js";
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export default async function validateTokenMiddleware(req, res, next) {
   const authorization = req.headers.authorization;
   const token = authorization?.replace('Bearer ', '');
+  const secretKey = process.env.JWT_SECRET;
   if(!token){
     res.sendStatus(401);
     return;
@@ -14,16 +18,16 @@ export default async function validateTokenMiddleware(req, res, next) {
       res.sendStatus(401);
       return;
     }
-  
-    const user = await db.collection("users").findOne({ _id: session.userId });
-    if(!user){
+
+    try {
+      const user = jwt.verify(session.token, secretKey);
+      res.locals.user = user;
+      
+      next();
+    } catch (error) {
+      console.log(error);
       res.sendStatus(401);
-      return;
     }
-    
-    res.locals.user = user;
-    
-    next();    
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
