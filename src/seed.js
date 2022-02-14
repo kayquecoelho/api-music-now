@@ -1,8 +1,6 @@
 import db from "./db.js";
 
-let executed = false;
-export default function seed() {
-  if (!executed) {
+function seed() {
     const products = [
       {
         name: "Meia Rita Lee - Bruxaria",
@@ -167,10 +165,8 @@ export default function seed() {
       },
     ];
 
-    db.collection("products").deleteMany({});
     db.collection("products").insertMany(products);
-    db.collection("artists").deleteMany({});
     db.collection("artists").insertMany(artists);
-    executed = true;
-  }
 }
+
+seed();

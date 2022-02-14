@@ -9,7 +9,7 @@ export async function postCheckout(req, res) {
     await db.collection("checkout").insertOne({ cart: userCart, userId: user._id });
 
     await db.collection("cart").deleteOne({ userId: user._id });
-
+    
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
       to: user.email,
